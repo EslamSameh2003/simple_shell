@@ -1,20 +1,20 @@
 #include "shell.h"
 
 /**
- * interactive - returns true if shell is interactive mode
- * @info: struct address
+ * interactive - print true if shell is interactive mode
+ * @in: struct address
  *
- * Return: 1 if interactive mode, 0 otherwise
+ * Return : 1 if interactive mode, 0 otherwise
  */
-int interactive(info_t *info)
+int interactive(info_t *in)
 {
-	return (isatty(STDIN_FILENO) && info->readfd <= 2);
+	return (isatty(STDIN_FILENO) && in->readfd <= 2);
 }
 
 /**
  * is_delim - checks if character is a delimeter
- * @c: the char to check
- * @delim: the delimeter string
+ * @n: the char to check
+ * @de: the specific string
  * Return: 1 if true, 0 if false
  */
 int is_delim(char n, char *de)
@@ -33,8 +33,8 @@ int is_delim(char n, char *de)
 }
 
 /**
- *_isalpha - checks for alphabetic character
- *@c: The character to input
+ *_isalpha - checks for charactre alphabetic
+ *@n: The character to input
  *Return: 1 if c is alphabetic, 0 otherwise
  */
 
@@ -53,8 +53,8 @@ int _isalpha(int n)
 }
 
 /**
- *_atoi - converts a string to an integer
- *@s: the string to be converted
+ *_atoi - convert a string to an integer
+ *@v: the string to be converted
  *Return: 0 if no numbers in string, converted number otherwise
  */
 
