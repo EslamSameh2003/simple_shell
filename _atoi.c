@@ -1,87 +1,74 @@
 #include "shell.h"
 
 /**
- * interactive - print true if shell is interactive mode
- * @in: struct address
+ * interactive - returns true if shell is interactive mode
+ * @info: struct address
  *
- * Return : 1 if interactive mode, 0 otherwise
+ * Return: 1 if interactive mode, 0 otherwise
  */
-int interactive(info_t *in)
+int interactive(info_t *info)
 {
-	return (isatty(STDIN_FILENO) && in->readfd <= 2);
+	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
  * is_delim - checks if character is a delimeter
- * @n: the char to check
- * @de: the specific string
+ * @c: the char to check
+ * @delim: the delimeter string
  * Return: 1 if true, 0 if false
  */
-int is_delim(char n, char *de)
+int is_delim(char c, char *delim)
 {
-	while (*de)
-	{
-		if (*de++ == n)
-		{
+	while (*delim)
+		if (*delim++ == c)
 			return (1);
-		}
-		else
-		{
-	              return (0);
-		}
-	}
+	return (0);
 }
 
 /**
- *_isalpha - checks for charactre alphabetic
- *@n: The character to input
+ *_isalpha - checks for alphabetic character
+ *@c: The character to input
  *Return: 1 if c is alphabetic, 0 otherwise
  */
 
-int _isalpha(int n)
+int _isalpha(int c)
 {
-	if ((n >= 'a' && n <= 'z') || (n >= 'A' && n <= 'Z'))
-	{
-			
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
-	}
-			
 	else
-	{
 		return (0);
-	}
 }
 
 /**
- *_atoi - convert a string to an integer
- *@v: the string to be converted
+ *_atoi - converts a string to an integer
+ *@s: the string to be converted
  *Return: 0 if no numbers in string, converted number otherwise
  */
 
-int _atoi(char *v)
+int _atoi(char *s)
 {
-	int i, si = 1, fl = 0, out;
-	unsigned int r = 0;
+	int i, sign = 1, flag = 0, output;
+	unsigned int result = 0;
 
-	for (i = 0;  v[i] != '\0' && f != 2; i++)
+	for (i = 0;  s[i] != '\0' && flag != 2; i++)
 	{
-		if (v[i] == '-')
-			si *= -1;
+		if (s[i] == '-')
+			sign *= -1;
 
-		if (v[i] >= '0' && v[i] <= '9')
+		if (s[i] >= '0' && s[i] <= '9')
 		{
-			fl = 1;
-			r *= 10;
-			r += (v[i] - '0');
+			flag = 1;
+			result *= 10;
+			result += (s[i] - '0');
 		}
-		else if (fl == 1)
-			fl = 2;
+		else if (flag == 1)
+			flag = 2;
 	}
 
-	if (si == -1)
-		out = -r;
+	if (sign == -1)
+		output = -result;
 	else
-		out = r;
+		output = result;
 
-	return (out);
+	return (output);
 }
